@@ -1,0 +1,105 @@
+#!/bin/sh
+
+set -eu
+
+script_dir=$(CDPATH= cd "$(dirname "$0")" && pwd)
+repo_root=$(dirname "$script_dir")
+skills_dir="$repo_root/skills"
+agents_skills_dir=${AGENTS_SKILLS_DIR:-"$HOME/.agents/skills"}
+claude_skills_dir=${CLAUDE_SKILLS_DIR:-"$HOME/.claude/skills"}
+harness=all
+selected_skills=
+
+usage() {
+  printf '%s\n' "Usage: ./scripts/install [--harness all|codex|pi|claude] [skill ...]"
+}
+
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    --harness)
+      if [ "$#" -lt 2 ]; then
+        usage >&2
+        exit 2
+      fi
+      harness=$2
+      shift 2
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    --*)
+      printf 'Unknown option: %s\n' "$1" >&2
+      usage >&2
+      exit 2
+      ;;
+    *)
+      selected_skills="$selected_skills $1"
+      shift
+      ;;
+  esac
+done
+
+case "$harness" in
+  all|codex|pi|claude) ;;
+  *)
+    printf 'Unknown harness: %s\n' "$harness" >&2
+    usage >&2
+    exit 2
+    ;;
+esac
+
+if [ -z "$selected_skills" ]; then
+  for skill_path in "$skills_dir"/*; do
+    [ -d "$skill_path" ] || continue
+    selected_skills="$selected_skills $(basename "$skill_path")"
+  done
+fi
+
+link_skill() {
+  source_path=$1
+  target_root=$2
+  skill_name=$(basename "$source_path")
+  target_path="$target_root/$skill_name"
+
+  mkdir -p "$target_root"
+
+  if [ -L "$target_path" ]; then
+    existing_target=$(readlink "$target_path")
+    if [ "$existing_target" = "$source_path" ]; then
+      printf 'Already linked: %s\n' "$target_path"
+      return
+    fi
+    printf 'Refusing to replace link: %s -> %s\n' "$target_path" "$existing_target" >&2
+    return 1
+  fi
+
+  if [ -e "$target_path" ]; then
+    printf 'Refusing to replace existing path: %s\n' "$target_path" >&2
+    return 1
+  fi
+
+  ln -s "$source_path" "$target_path"
+  printf 'Linked: %s -> %s\n' "$target_path" "$source_path"
+}
+
+for skill_name in $selected_skills; do
+  source_path="$skills_dir/$skill_name"
+  if [ ! -f "$source_path/SKILL.md" ]; then
+    printf 'Unknown or invalid skill: %s\n' "$skill_name" >&2
+    exit 1
+  fi
+
+  case "$harness" in
+    all)
+      link_skill "$source_path" "$agents_skills_dir"
+      link_skill "$source_path" "$claude_skills_dir"
+      ;;
+    codex|pi)
+      link_skill "$source_path" "$agents_skills_dir"
+      ;;
+    claude)
+      link_skill "$source_path" "$claude_skills_dir"
+      ;;
+  esac
+done

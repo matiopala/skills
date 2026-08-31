@@ -1,0 +1,35 @@
+#!/bin/sh
+
+set -eu
+
+script_dir=$(CDPATH= cd "$(dirname "$0")" && pwd)
+repo_root=$(dirname "$script_dir")
+skills_dir="$repo_root/skills"
+agents_skills_dir=${AGENTS_SKILLS_DIR:-"$HOME/.agents/skills"}
+claude_skills_dir=${CLAUDE_SKILLS_DIR:-"$HOME/.claude/skills"}
+
+unlink_skill() {
+  source_path=$1
+  target_root=$2
+  skill_name=$(basename "$source_path")
+  target_path="$target_root/$skill_name"
+
+  if [ ! -L "$target_path" ]; then
+    return
+  fi
+
+  existing_target=$(readlink "$target_path")
+  if [ "$existing_target" != "$source_path" ]; then
+    printf 'Keeping unrelated link: %s -> %s\n' "$target_path" "$existing_target"
+    return
+  fi
+
+  unlink "$target_path"
+  printf 'Unlinked: %s\n' "$target_path"
+}
+
+for source_path in "$skills_dir"/*; do
+  [ -d "$source_path" ] || continue
+  unlink_skill "$source_path" "$agents_skills_dir"
+  unlink_skill "$source_path" "$claude_skills_dir"
+done
