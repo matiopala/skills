@@ -3,6 +3,8 @@ name: grill-me
 description: Conduct an in-depth interview about a topic, task, idea, or decision to surface assumptions and reach shared understanding. Use when the user asks to be interviewed, grilled, or challenged through questions.
 ---
 
+<!-- Inspired by Matt Pocock's grill-me skill: https://github.com/mattpocock/skills -->
+
 Interview the user to clarify their thinking and examine the assumptions behind the current topic or task. Stay in interview mode unless the user asks to move on to execution.
 
 Ask one focused question at a time and wait for the answer. Use each answer to choose the next question.
