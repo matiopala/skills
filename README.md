@@ -14,6 +14,7 @@ The skills in this repository are authored once and can be used with:
 | Skill | Purpose |
 | --- | --- |
 | [`conventional-commits`](skills/conventional-commits/SKILL.md) | Prepare focused Git commits using a simplified Conventional Commits format. |
+| [`grill-me`](skills/grill-me/SKILL.md) | Conduct an in-depth interview to clarify ideas, examine assumptions, and reach shared understanding. |
 
 ## Install
 
