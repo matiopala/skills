@@ -15,6 +15,7 @@ The skills in this repository are authored once and can be used with:
 | --- | --- |
 | [`bro`](skills/bro/SKILL.md) | Rewrite the previous assistant response in clear, everyday language. |
 | [`conventional-commits`](skills/conventional-commits/SKILL.md) | Prepare focused Git commits using a simplified Conventional Commits format. |
+| [`decompose`](skills/decompose/SKILL.md) | Break larger designs into reviewable tasks with dependencies, acceptance criteria, and irrefutable proof of completion. |
 | [`deliver`](skills/deliver/SKILL.md) | Guide a software change through interviewing, research, planning, implementation, and irrefutable proof of delivery. |
 | [`grill-me`](skills/grill-me/SKILL.md) | Conduct an in-depth interview to clarify ideas, examine assumptions, and reach shared understanding. |
 | [`show-me`](skills/show-me/SKILL.md) | Explain the current topic with a focused visual. |
