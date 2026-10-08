@@ -1,27 +1,36 @@
-# Agent Skills
+# My agent skills
 
-Portable, open-source skills for agent harnesses that implement the
-[Agent Skills](https://agentskills.io/) format.
+This is my personal collection of agent skills. I develop and maintain this
+repo on my own, and only add and keep skills I actually use regularly in my
+projects.
 
-The skills in this repository are authored once and can be used with:
+Some skills are copied or adapted from other people's work. `bro` and
+`grill-me` are two examples. Sources are linked in [Credits](#credits).
 
-- OpenAI Codex
-- Pi
-- Claude Code
+The skills use the [Agent Skills](https://agentskills.io/) format and work
+with Codex, Pi, and Claude Code.
 
-## Available skills
+## What's here
 
-| Skill | Purpose |
+| Skill | What I use it for |
 | --- | --- |
-| [`adr`](skills/adr/SKILL.md) | Capture consequential product and technical decisions, their rationale, and their history. |
-| [`bro`](skills/bro/SKILL.md) | Rewrite the previous assistant response in clear, everyday language. |
-| [`conventional-commits`](skills/conventional-commits/SKILL.md) | Prepare focused Git commits using a simplified Conventional Commits format. |
-| [`decompose`](skills/decompose/SKILL.md) | Break larger designs into reviewable tasks with dependencies, acceptance criteria, and irrefutable proof of completion. |
-| [`deliver`](skills/deliver/SKILL.md) | Guide a software change through interviewing, research, planning, implementation, and irrefutable proof of delivery. |
-| [`grill-me`](skills/grill-me/SKILL.md) | Conduct an in-depth interview to clarify ideas, examine assumptions, and reach shared understanding. |
-| [`product-spec`](skills/product-spec/SKILL.md) | Define user outcomes, required behavior, acceptance criteria, and evidence of product value before technical design. |
-| [`show-me`](skills/show-me/SKILL.md) | Explain the current topic with a focused visual. |
-| [`tech-spec`](skills/tech-spec/SKILL.md) | Define a technical solution, its acceptance evidence, and its readiness for task decomposition. |
+| [`adr`](skills/adr/SKILL.md) | Keep track of important decisions, their reasoning, and later changes. |
+| [`bro`](skills/bro/SKILL.md) | Get a simpler version of the previous answer. |
+| [`conventional-commits`](skills/conventional-commits/SKILL.md) | Prepare focused Git commits with clear Conventional Commit messages. |
+| [`decompose`](skills/decompose/SKILL.md) | Split a bigger design into reviewable tasks with clear acceptance criteria and proof of completion. |
+| [`deliver`](skills/deliver/SKILL.md) | Work through questions, research, planning, and implementation, then collect irrefutable proof of delivery. |
+| [`grill-me`](skills/grill-me/SKILL.md) | Get interviewed about an idea, surface assumptions, and clarify what I actually want. |
+| [`product-spec`](skills/product-spec/SKILL.md) | Define the user problem, desired outcome, and what success looks like. |
+| [`show-me`](skills/show-me/SKILL.md) | Get a focused visual explanation. |
+| [`tech-spec`](skills/tech-spec/SKILL.md) | Describe how a feature should work technically and how to prove it works. |
+
+## Credits
+
+- `bro` is adapted from [backnotprop/bro](https://github.com/backnotprop/bro).
+- `grill-me` is adapted from [Matt Pocock's skills](https://github.com/mattpocock/skills).
+- `show-me` is inspired by [HumanLayer's show-me](https://github.com/humanlayer/skills/tree/main/plugins/show-me).
+- `deliver` draws on Matt Pocock's `grill-me` and
+  [HumanLayer's research-plan-implement workflow](https://github.com/humanlayer/humanlayer/tree/main/.claude/commands).
 
 ## Install
 
@@ -31,16 +40,15 @@ Clone the repository, then run:
 ./scripts/install
 ```
 
-By default, the installer links every skill into both shared discovery
-locations:
+By default, this creates symbolic links for every skill in:
 
 - `~/.agents/skills` for Codex and Pi
 - `~/.claude/skills` for Claude Code
 
-Because the installed skills are symbolic links, pulling changes in this clone
-updates every harness immediately.
+The links point to this clone, so edits and pulls update the installed skill
+files too.
 
-Install for one harness only:
+To install for just one tool:
 
 ```sh
 ./scripts/install --harness codex
@@ -48,17 +56,16 @@ Install for one harness only:
 ./scripts/install --harness claude
 ```
 
-Install selected skills:
+Or pick individual skills:
 
 ```sh
 ./scripts/install conventional-commits
 ```
 
-Selecting `product-spec`, `tech-spec`, `decompose`, `deliver`, or `grill-me`
-also installs their shared `adr` companion. These workflows consult relevant
-decisions and capture consequential choices automatically; `grill-me` does
-this only for software interviews in a repository. When copying skills
-manually, include `adr` alongside these workflows.
+`product-spec`, `tech-spec`, `decompose`, `deliver`, and `grill-me` use `adr`
+to record important decisions. Installing any of them also installs `adr`.
+If you copy skill folders manually, include it too. For `grill-me`, decision
+capture only applies to software interviews in a repository.
 
 The installer refuses to replace existing files or links that point elsewhere.
 Set `AGENTS_SKILLS_DIR` or `CLAUDE_SKILLS_DIR` to override either installation
@@ -73,21 +80,19 @@ directory.
 The uninstaller removes only links that point to skills in this clone. It does
 not delete skill contents or unrelated installations.
 
-## Validate
+## Editing skills
+
+Each skill lives in `skills/<skill-name>/SKILL.md`. Any supporting scripts,
+references, or assets stay in the same folder. I keep the shared instructions
+compatible with all three tools wherever possible.
+
+After editing, run:
 
 ```sh
 ./scripts/validate
 ```
 
-Validation checks the portable subset of the Agent Skills specification used by
-this repository, including required frontmatter and naming conventions.
-
-## Authoring
-
-Each skill lives in `skills/<skill-name>/` and contains a required `SKILL.md`.
-Optional scripts, references, and assets belong inside the same skill directory.
-Keep harness-specific behavior out of shared instructions unless the skill
-cannot work without it.
+This checks skill names and required metadata.
 
 ## License
 
