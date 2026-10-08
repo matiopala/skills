@@ -11,6 +11,10 @@ https://github.com/humanlayer/humanlayer/tree/main/.claude/commands
 Follow the stages covered by the user's request and existing authorization.
 Resume from established decisions and completed work.
 
+Use the [adr](../adr/SKILL.md) skill to consult relevant accepted decisions
+before planning or changing code. Capture consequential choices and deviations
+as they emerge, and link the records from the plan or task record.
+
 ## Task records
 
 When working from a task file or tracker issue, read its brief, status, and

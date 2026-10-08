@@ -15,4 +15,6 @@ If a question can be answered from available context, files, code, or other acce
 
 Offer a recommended answer with a brief rationale when it would help the user evaluate a concrete choice. Avoid recommendations when exploring their experiences, preferences, or motivations, or when a suggestion would steer their answer prematurely. Follow any explicit preference about recommendations.
 
+For software interviews in a repository, use the [adr](../adr/SKILL.md) skill to consult relevant accepted decisions and capture consequential choices reached during the interview. Recording a decision remains part of the interview and does not start implementation.
+
 Continue until the consequential assumptions and open questions have been examined, or the user chooses to stop. Close with a concise summary of the shared understanding, decisions, and remaining uncertainties.

@@ -13,11 +13,13 @@ The skills in this repository are authored once and can be used with:
 
 | Skill | Purpose |
 | --- | --- |
+| [`adr`](skills/adr/SKILL.md) | Capture consequential product and technical decisions, their rationale, and their history. |
 | [`bro`](skills/bro/SKILL.md) | Rewrite the previous assistant response in clear, everyday language. |
 | [`conventional-commits`](skills/conventional-commits/SKILL.md) | Prepare focused Git commits using a simplified Conventional Commits format. |
 | [`decompose`](skills/decompose/SKILL.md) | Break larger designs into reviewable tasks with dependencies, acceptance criteria, and irrefutable proof of completion. |
 | [`deliver`](skills/deliver/SKILL.md) | Guide a software change through interviewing, research, planning, implementation, and irrefutable proof of delivery. |
 | [`grill-me`](skills/grill-me/SKILL.md) | Conduct an in-depth interview to clarify ideas, examine assumptions, and reach shared understanding. |
+| [`product-spec`](skills/product-spec/SKILL.md) | Define user outcomes, required behavior, acceptance criteria, and evidence of product value before technical design. |
 | [`show-me`](skills/show-me/SKILL.md) | Explain the current topic with a focused visual. |
 | [`tech-spec`](skills/tech-spec/SKILL.md) | Define a technical solution, its acceptance evidence, and its readiness for task decomposition. |
 
@@ -51,6 +53,12 @@ Install selected skills:
 ```sh
 ./scripts/install conventional-commits
 ```
+
+Selecting `product-spec`, `tech-spec`, `decompose`, `deliver`, or `grill-me`
+also installs their shared `adr` companion. These workflows consult relevant
+decisions and capture consequential choices automatically; `grill-me` does
+this only for software interviews in a repository. When copying skills
+manually, include `adr` alongside these workflows.
 
 The installer refuses to replace existing files or links that point elsewhere.
 Set `AGENTS_SKILLS_DIR` or `CLAUDE_SKILLS_DIR` to override either installation

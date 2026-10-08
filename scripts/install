@@ -56,6 +56,20 @@ if [ -z "$selected_skills" ]; then
   done
 fi
 
+# These workflows share ADR handling. Include the companion when selecting
+# individual skills as well as when installing the whole repository.
+for skill_name in $selected_skills; do
+  case "$skill_name" in
+    product-spec|tech-spec|decompose|deliver|grill-me)
+      case " $selected_skills " in
+        *" adr "*) ;;
+        *) selected_skills="adr $selected_skills" ;;
+      esac
+      break
+      ;;
+  esac
+done
+
 link_skill() {
   source_path=$1
   target_root=$2

@@ -10,6 +10,9 @@ how successful implementation will be demonstrated.
 Use existing requirements, architectural decisions, and conversation context.
 A formal product specification is helpful but not required.
 
+Use the [adr](../adr/SKILL.md) skill to consult relevant accepted decisions
+before design and capture consequential choices as they emerge.
+
 ## 1. Establish the requirements
 
 Identify the intended outcomes, scope, constraints, acceptance criteria,
@@ -73,8 +76,9 @@ or future work, record the chosen approach and why it fits.
 Compare alternatives when they represent a real tradeoff. Include relevant
 evidence and acknowledge the costs of the chosen approach.
 
-Keep the rationale close to the decision. Avoid repeating the same
-requirements or architectural explanation across sections.
+For choices captured in ADRs, summarize their effect on the proposed solution
+and link to the records for rationale, alternatives, and consequences.
+Keep smaller decisions inline without repeating requirements or design details.
 
 ## 5. Define acceptance and irrefutable proof
 

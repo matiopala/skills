@@ -12,6 +12,11 @@ PR that a reviewer can understand, verify, and accept independently.
 Read the supplied artifact and relevant context. Identify the required
 outcomes, scope, shared invariants, and consequential decisions already made.
 
+Use the [adr](../adr/SKILL.md) skill to consult relevant accepted decisions
+and carry their links into task briefs. Capture a new record only when
+decomposition introduces a consequential design, rollout, or compatibility
+tradeoff; ordinary task splits belong in the task records.
+
 Investigate the codebase around specific decomposition questions: existing
 behavior, ownership, interfaces, dependencies, and verification options.
 Use this evidence to assess task boundaries and likely size.
