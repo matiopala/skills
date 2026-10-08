@@ -19,6 +19,7 @@ The skills in this repository are authored once and can be used with:
 | [`deliver`](skills/deliver/SKILL.md) | Guide a software change through interviewing, research, planning, implementation, and irrefutable proof of delivery. |
 | [`grill-me`](skills/grill-me/SKILL.md) | Conduct an in-depth interview to clarify ideas, examine assumptions, and reach shared understanding. |
 | [`show-me`](skills/show-me/SKILL.md) | Explain the current topic with a focused visual. |
+| [`tech-spec`](skills/tech-spec/SKILL.md) | Define a technical solution, its acceptance evidence, and its readiness for task decomposition. |
 
 ## Install
 

@@ -11,6 +11,20 @@ https://github.com/humanlayer/humanlayer/tree/main/.claude/commands
 Follow the stages covered by the user's request and existing authorization.
 Resume from established decisions and completed work.
 
+## Task records
+
+When working from a task file or tracker issue, read its brief, status, and
+relevant linked context. Use it as the authoritative working record. Preserve
+the agreed brief and acceptance criteria, and record consequential changes
+explicitly.
+
+Add the implementation plan, progress, and verification evidence to that same
+record in its existing location. Maintain one authoritative task record;
+link to it rather than creating duplicate task or delivery records.
+
+A task record is optional. For standalone requests, work from the available
+context and follow the user's requested output format and project conventions.
+
 ## 1. Interview
 
 Ask one consequential question at a time. Investigate relevant code and
@@ -98,6 +112,9 @@ Do not weaken acceptance criteria to make the implementation pass.
 Distinguish verified behavior from assumptions and unverified checks.
 If required evidence is unavailable, report the gap and leave the affected
 criterion incomplete.
+
+When using a task record, mark it complete only when the required evidence
+supports all acceptance criteria.
 
 Finish with the delivered outcome, acceptance evidence, regression
 results, and any remaining limitations.

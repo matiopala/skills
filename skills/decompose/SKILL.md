@@ -122,5 +122,18 @@ concise brief for each task:
 Identify the owner of final integrated verification and any unresolved
 questions or provisional estimates.
 
-Follow the user's requested output format and destination. Keep the work
-focused on decomposition until implementation is requested.
+Follow the user's requested output format and destination, then existing
+repository conventions. Otherwise, save artifacts under
+`docs/features/<feature>/tasks/`, with an `index.md` and one file per task
+named by its stable ID, such as `T01.md`.
+
+Use the index for the overall goal, task ordering, dependencies, and links
+to task files. Each task file owns its brief, acceptance criteria, and status,
+and can later hold its implementation plan, progress, and verification evidence.
+
+Maintain one authoritative task record. If the user chooses an issue tracker,
+use that destination and link to it rather than maintaining duplicate briefs.
+When revising a decomposition, update existing records and preserve task IDs,
+progress, implementation plans, and evidence.
+
+Keep the work focused on decomposition until implementation is requested.
